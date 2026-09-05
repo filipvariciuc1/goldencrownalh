@@ -78,19 +78,32 @@ header{
 @media (max-width:820px){.nav-links{display:none}}
 
 /* hero */
-.hero{padding:80px 0 88px;position:relative;overflow:hidden}
-.hero-inner{max-width:46em;position:relative}
-.hero h1{font-size:clamp(2.4rem,5vw,3.9rem);margin:18px 0 22px}
+.hero{padding:64px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem);margin:18px 0 20px}
 .hero h1 em{font-style:normal;color:var(--gold)}
-.hero p{max-width:34em;color:var(--ink-soft);font-size:1.16rem}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero p{max-width:34em;color:var(--ink-soft);font-size:1.14rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
 .hero-note{margin-top:22px;font-size:.95rem;color:var(--ink-soft)}
 .hero-note strong{color:var(--ink)}
-.hero-art{
-  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
-  width:min(40vw,460px);opacity:.9;pointer-events:none;
+.hero-photo{position:relative}
+.hero-photo img{
+  width:100%;aspect-ratio:4/4.6;object-fit:cover;
+  border-radius:999px 999px 28px 28px;
 }
-@media (max-width:960px){.hero-art{display:none}}
+.badge{
+  position:absolute;left:-18px;bottom:26px;
+  background:#FDFBF5;border:1px solid var(--line);border-radius:16px;
+  padding:14px 18px;display:flex;gap:12px;align-items:center;
+  box-shadow:0 12px 30px rgba(44,38,24,.14);
+}
+.badge b{font-family:var(--display);font-size:.98rem;display:block;line-height:1.2}
+.badge span{font-size:.82rem;color:var(--ink-soft)}
+@media (max-width:820px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-photo img{aspect-ratio:4/3.4}
+  .badge{left:12px}
+}
 
 /* trust strip */
 .strip{background:var(--cream);border-block:1px solid var(--line)}
@@ -158,6 +171,29 @@ header{
 @media (max-width:960px){.daily-cols{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.daily-cols{grid-template-columns:1fr}.daily{padding:72px 0}}
 
+/* gallery */
+.gallery{padding:96px 0}
+.gallery-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:40px}
+.gallery h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin:16px 0 0}
+.gallery-head p{color:var(--ink-soft);max-width:26em}
+.masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.masonry button{
+  border:0;padding:0;background:none;cursor:pointer;border-radius:18px;overflow:hidden;
+}
+.masonry button:focus-visible{outline:3px solid var(--ember);outline-offset:3px}
+.masonry img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;
+  transition:transform .35s ease;
+}
+.masonry button:hover img{transform:scale(1.035)}
+@media (max-width:820px){.masonry{grid-template-columns:repeat(2,1fr)}.gallery{padding:72px 0}}
+dialog{
+  border:0;border-radius:18px;padding:0;background:transparent;
+  max-width:min(92vw,1000px);
+}
+dialog::backdrop{background:rgba(47,38,20,.82)}
+dialog img{border-radius:18px;max-height:86vh;width:auto;max-width:100%;margin:0 auto}
+
 /* cta band */
 .band{background:var(--cream);border-block:1px solid var(--line);padding:72px 0}
 .band .wrap{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
@@ -205,7 +241,7 @@ footer small{font-size:.85rem}
 .tel-img-sm{height:1.15em;vertical-align:-0.25em}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .btn{transition:none}
+  .btn,.masonry img{transition:none}
 }
 </style>
 </head>
@@ -227,6 +263,7 @@ footer small{font-size:.85rem}
     <nav class="nav-links" aria-label="Main">
       <a href="#about">Our Home</a>
       <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="btn btn-solid" href="#contact">Schedule a tour</a>
@@ -236,16 +273,8 @@ footer small{font-size:.85rem}
 <main id="top">
 
   <section class="hero">
-    <svg class="hero-art" viewBox="0 0 460 460" fill="none" aria-hidden="true">
-      <circle cx="230" cy="230" r="180" stroke="#DFD7C2" stroke-width="1.5"/>
-      <circle cx="230" cy="230" r="130" stroke="#DFD7C2" stroke-width="1.5"/>
-      <path d="M130 260 120 180l55 42 55-77 55 77 55-42-10 80Z" fill="#F3EBD9" stroke="#8F6B1F" stroke-width="3" stroke-linejoin="round"/>
-      <path d="M130 285h200" stroke="#B4552D" stroke-width="5" stroke-linecap="round"/>
-      <path d="M160 310h140" stroke="#B4552D" stroke-width="5" stroke-linecap="round" opacity=".5"/>
-      <path d="M190 335h80" stroke="#B4552D" stroke-width="5" stroke-linecap="round" opacity=".25"/>
-    </svg>
-    <div class="wrap">
-      <div class="hero-inner">
+    <div class="wrap hero-grid">
+      <div>
         <p class="eyebrow">Residential care in Glendale, Arizona</p>
         <h1>A small home, with <em>room for a whole life</em></h1>
         <p>Golden Crown Assisted Living is a licensed residential care home for up to ten residents, offering Directed Care in a quiet Glendale neighborhood. Caregivers are on site around the clock, and every plan of care is written for one person: yours.</p>
@@ -254,6 +283,16 @@ footer small{font-size:.85rem}
           <a class="btn btn-ghost tel-link" href="#call" aria-label="Call Golden Crown Assisted Living"><img class="tel-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMzYgMjMiPjx0ZXh0IHg9IjAiIHk9IjE4IiBmb250LWZhbWlseT0iR2VvcmdpYSwgJ1RpbWVzIE5ldyBSb21hbicsIHNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjNUY0NzE1Ij4oNiYjNDg7MikgOCYjNTI7My0mIzQ4OzMyNzwvdGV4dD48L3N2Zz4=" alt="Call us"></a>
         </div>
         <p class="hero-note"><strong>17818 N 54th Ln, Glendale, AZ 85308</strong> &middot; tours welcome any day, just call ahead</p>
+      </div>
+      <div class="hero-photo">
+        <img src="images/hero-front-house.jpg" alt="The front of Golden Crown: a single-story Arizona home shaded by a mature tree" width="800" height="920">
+        <div class="badge">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <circle cx="15" cy="15" r="14" stroke="#B4552D" stroke-width="2"/>
+            <path d="M15 8v7l5 3" stroke="#8F6B1F" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div><b>Caregivers on site 24/7</b><span>immediate assistance, day and night</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -381,6 +420,35 @@ footer small{font-size:.85rem}
     </div>
   </section>
 
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>Have a look around</h2>
+        </div>
+        <p>Every photo below is our actual home in Glendale. Click any of them for a closer look.</p>
+      </div>
+      <div class="masonry">
+        <button type="button" data-full="images/backyard-lawn.jpg"><img loading="lazy" src="images/backyard-lawn.jpg" alt="Backyard lawn running along the house, with a shade tree and block wall" width="400" height="300"></button>
+        <button type="button" data-full="images/covered-patio.jpg"><img loading="lazy" src="images/covered-patio.jpg" alt="Covered back patio with outdoor seating and a ceiling fan" width="400" height="300"></button>
+        <button type="button" data-full="images/pergola-dining.jpg"><img loading="lazy" src="images/pergola-dining.jpg" alt="Wooden pergola over a long outdoor dining table in the backyard" width="400" height="300"></button>
+        <button type="button" data-full="images/entry-hallway.jpg"><img loading="lazy" src="images/entry-hallway.jpg" alt="Bright entry hallway with a console table and mirror" width="400" height="300"></button>
+        <button type="button" data-full="images/kitchen-island.jpg"><img loading="lazy" src="images/kitchen-island.jpg" alt="Kitchen with a granite island and stainless steel appliances" width="400" height="300"></button>
+        <button type="button" data-full="images/dining-area.jpg"><img loading="lazy" src="images/dining-area.jpg" alt="Dining area with a chandelier and large windows" width="400" height="300"></button>
+        <button type="button" data-full="images/family-room.jpg"><img loading="lazy" src="images/family-room.jpg" alt="Family room with a row of power recliners facing the television" width="400" height="300"></button>
+        <button type="button" data-full="images/bedroom-recliner.jpg"><img loading="lazy" src="images/bedroom-recliner.jpg" alt="Resident bedroom with a power recliner, dresser, and wall-mounted television" width="400" height="300"></button>
+        <button type="button" data-full="images/bedroom-ensuite.jpg"><img loading="lazy" src="images/bedroom-ensuite.jpg" alt="Resident bedroom with a view into its own bathroom" width="400" height="300"></button>
+        <button type="button" data-full="images/bedroom-tv.jpg"><img loading="lazy" src="images/bedroom-tv.jpg" alt="Resident bedroom with television, dresser, and recliner chair" width="400" height="300"></button>
+        <button type="button" data-full="images/bedroom-chaise.jpg"><img loading="lazy" src="images/bedroom-chaise.jpg" alt="Resident bedroom with a chaise lounge and leather recliner" width="400" height="300"></button>
+        <button type="button" data-full="images/accessible-bathroom.jpg"><img loading="lazy" src="images/accessible-bathroom.jpg" alt="Accessible bathroom with walk-in shower and grab bars" width="400" height="300"></button>
+      </div>
+    </div>
+    <dialog id="lightbox" aria-label="Photo viewer">
+      <img src="" alt="">
+    </dialog>
+  </section>
+
   <div class="band">
     <div class="wrap">
       <h2>The best way to know if Golden Crown is right for your family is to <span>come see it</span>.</h2>
@@ -436,6 +504,17 @@ document.querySelectorAll('.tel-link').forEach(a => {
   a.addEventListener('click', e => { e.preventDefault(); location.href = 'tel:' + rev(dialNum); });
 });
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const box = document.getElementById('lightbox');
+const boxImg = box.querySelector('img');
+document.querySelectorAll('.masonry button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    boxImg.src = btn.dataset.full;
+    boxImg.alt = btn.querySelector('img').alt;
+    box.showModal();
+  });
+});
+box.addEventListener('click', () => box.close());
 
 document.getElementById('contact-form').addEventListener('submit', e => {
   e.preventDefault();
