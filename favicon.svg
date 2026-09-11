@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1.5 1.9 35 35">
+  <style>
+    .crown{fill:#8F6B1F}
+    .bar{stroke:#B4552D}
+    @media (prefers-color-scheme:dark){
+      .crown{fill:#E0B24A}
+      .bar{stroke:#EE8A56}
+    }
+  </style>
+  <path class="crown" d="M5 24 3 10l8 6 8-11 8 11 8-6-2 14Z"/>
+  <path class="bar" d="M5 28h28" stroke-width="2.6" stroke-linecap="round"/>
+  <path class="bar" d="M10 32.5h18" stroke-width="2.6" stroke-linecap="round" opacity=".45"/>
+</svg>
